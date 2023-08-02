@@ -16,8 +16,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Menu />
-      <h1>Home Chef Recipes</h1>
+      <div className="home-hero-header">
+        <Menu />
+        <div className="home-text-hero">
+          <span className="home-chef-hero">Home</span>
+          <span className="home-chef-hero">Chef</span>
+          <span className="home-chef-hero">Recipes</span>
+        </div>
+      </div>
       <RecipeList />
       <Button />
     </>

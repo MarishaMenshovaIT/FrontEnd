@@ -46,9 +46,13 @@ function RecipeList() {
   }
 
   return (
-    <>
-      <h1>FUCKING RECIPES!</h1>
-      <input type="search" placeholder="Search for recipes"></input>
+    <div className="homepage-container">
+      <h2 className="homepage-heading-recipes">Recipes</h2>
+      <input
+        className="homepage-search-bar"
+        type="search"
+        placeholder="Search for recipes"
+      ></input>
       <div className="recipe-button">
         <button
           className={` recipe-button ${!activeCategory ? "active-button" : ""}`}
@@ -71,22 +75,27 @@ function RecipeList() {
         })}
       </div>
 
-      <div>
+      <div className="homepage-recipes">
         {filteredRecipes.map((recipe) => {
           return (
             <section
+              className="homepage-recipe-item"
               key={recipe.id}
               onClick={() => clickHandleForRecipeId(recipe.id)}
             >
-              <h2>{recipe.name}</h2>
-              <img src={recipe.img_url} />
-              <p>{recipe.serves}</p>
-              <p>{recipe.prep_time}</p>
+              <div className="recipe-box-left">
+                <img className="recipe-box-img" src={recipe.img_url} />
+              </div>
+              <div className="recipe-box-right">
+                <h2>{recipe.name}</h2>
+                <p>{recipe.serves}</p>
+                <p>{recipe.prep_time}</p>
+              </div>
             </section>
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 
