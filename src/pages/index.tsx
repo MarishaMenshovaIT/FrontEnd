@@ -20,7 +20,6 @@ export default function Home() {
       <Menu />
 
       <h1>Home Chef Recipes</h1>
-      <Categories />
       <Recipes />
       <Button />
     </>
