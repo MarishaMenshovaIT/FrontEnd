@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Recipes from "./recipes";
+import { count } from "console";
 
 interface Categories {
   id: number;
@@ -9,6 +11,8 @@ interface Categories {
 
 const Categories = () => {
   const [getCategories, setCategories] = useState<Categories[] | null>(null);
+  const [getFilter, setFilter] = useState<string>("all");
+
   useEffect(() => {
     //Define async function for axios
     const getCategories = async () => {
@@ -19,19 +23,26 @@ const Categories = () => {
     getCategories();
   }, []);
 
+  const handleCategory = (category: string) => {
+    setFilter(category);
+    // console.log("Recipes");
+  };
+
   return (
     <div>
+      <p>Current Category: {getFilter}</p>
       {getCategories === null ? (
         <p>Loading...</p>
       ) : (
         getCategories.map((category) => {
           return (
-            <div key={category.id}>
-              <p>
-                {category.id}:{category.name}
-              </p>
+            <button
+              onClick={() => handleCategory(category.name)}
+              key={category.id}
+            >
+              <p>{category.name}</p>
               <p>{category.img_url}</p>
-            </div>
+            </button>
           );
         })
       )}

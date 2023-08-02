@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Menu from "./menu";
-import Recipes from "./recipes";
-import Categories from "./categories";
-import Button from "./butten";
+import Menu from "../component/menu";
+import Recipes from "../component/recipes";
+import Categories from "../component/categories";
+import Button from "../component/butten";
 
 const inter = Inter({ subsets: ["latin"] });
 
