@@ -1,14 +1,14 @@
 export interface Recipe {
   id: number;
   name: string;
+  img_url: string;
   instructions: string;
   ingredients: string;
   prep_time: number;
-  img_url: string;
   serves: number;
   userId: number;
-  comments: Comment[];
   category: Category[];
+  comments: Comment[];
 }
 
 export interface Category {
