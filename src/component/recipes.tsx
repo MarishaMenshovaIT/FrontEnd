@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Categories from "./categories";
 
 interface Recipes {
   id: number;
@@ -10,6 +11,7 @@ interface Recipes {
 }
 
 const Recipes = () => {
+  // Original Code
   const [getRecipes, setRecipes] = useState<Recipes[] | null>(null);
   useEffect(() => {
     //Define async function for axios
