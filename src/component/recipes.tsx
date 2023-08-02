@@ -37,6 +37,9 @@ const Recipes = () => {
               <p>{recipe.img_url}</p>
               <p>{recipe.prep_time}</p>
               <p>{recipe.serves}</p>
+              {/* <button onClick={() => toggleRecipe(recipe.categore)}>
+              Breakfast
+              </button> */}
             </div>
           );
         })
@@ -46,3 +49,12 @@ const Recipes = () => {
 };
 
 export default Recipes;
+
+// .filter((recipe) => {
+//   if (filterRecipes) {
+// return true;
+//   } else {
+// return recipe.all;
+//   }
+// }
+// )
