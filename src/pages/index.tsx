@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Menu from "../component/menu";
-import Recipes from "../component/recipes";
-import Categories from "../component/categories";
 import Button from "../component/butten";
+import RecipeList from "@/component/filter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +17,8 @@ export default function Home() {
       </Head>
 
       <Menu />
-
       <h1>Home Chef Recipes</h1>
-      <Recipes />
+      <RecipeList />
       <Button />
     </>
   );
