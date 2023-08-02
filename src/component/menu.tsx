@@ -1,17 +1,19 @@
 import Link from "next/link";
 
-const Menu = () => {
+interface MenuProps {
+  background?: boolean;
+}
+
+const Menu = (props: MenuProps) => {
+  const { background } = props;
+
   return (
     <>
-      <nav>
+      <nav className={`${background ? "navigation-background" : ""}`}>
         <div className="menu-bar">
-          <div className="logo">
-            <Link href="/">🥘 HomeChefRecipes</Link>
-          </div>
+          <span>🥗 HomeChefRecipes</span>
           <div className="menu">
             <Link href="/">Home</Link>
-          </div>
-          <div className="menu">
             <button>
               <Link href="/Button">Login</Link>
             </button>

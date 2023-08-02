@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Comment, Recipe, Category } from "@/types/interfaces";
-import Menu from "../menu";
+import Menu from "@/component/menu";
 
 const RecipePage = () => {
   const [getRecipe, setRecipe] = useState<null | Recipe>(null);
@@ -34,8 +34,11 @@ const RecipePage = () => {
 
   return (
     <>
-      <Menu />
-      <div className="recipe-header">
+      <Menu background={true} />
+      <div
+        style={{ backgroundImage: `url(${getRecipe.img_url})` }}
+        className="recipe-header"
+      >
         <div>
           <h1>{getRecipe.name}</h1>
           {getRecipe.category.map((indexCat: Category) => (
