@@ -11,7 +11,7 @@ const Menu = (props: MenuProps) => {
     <>
       <nav className={`${background ? "navigation-background" : ""}`}>
         <div className="menu-bar">
-          <span>🥗 HomeChefRecipes</span>
+          <span className="logo">🥗 HomeChefRecipes</span>
           <div className="menu">
             <Link href="/">Home</Link>
             <button className="button">

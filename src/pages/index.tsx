@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Menu from "../component/menu";
-import Recipes from "../component/recipes";
-import Categories from "../component/categories";
 import Button from "../component/butten";
+import RecipeList from "@/component/filter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +16,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <Menu roundedCorners={false} /> */}
-      <nav className="recipes-navigation-bar"></nav>
-
-      <h1>Home Chef Recipes</h1>
-      <Recipes />
+      <div className="home-hero-header">
+        <Menu />
+        <div className="home-text-hero">
+          <span className="home-chef-hero">Home</span>
+          <span className="home-chef-hero">Chef</span>
+          <span className="home-chef-hero">Recipes</span>
+        </div>
+      </div>
+      <RecipeList />
       <Button />
     </>
   );
