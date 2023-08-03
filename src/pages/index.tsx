@@ -17,7 +17,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Menu />
+      {/* <Menu roundedCorners={false} /> */}
+      <nav className="recipes-navigation-bar"></nav>
 
       <h1>Home Chef Recipes</h1>
       <Recipes />

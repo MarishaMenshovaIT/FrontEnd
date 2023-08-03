@@ -28,6 +28,7 @@ position: relative;
 }
 
 .menu-bar {
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -40,7 +41,7 @@ position: relative;
   font-family: Young Serif;
   font-size: 36px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
   margin-right: auto;
 }
@@ -49,11 +50,26 @@ position: relative;
   color: #000;
   text-align: right;
   font-family: Young Serif;
-  font-size: 24px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   padding: 10px;
+}
+
+.button{
+  width: 64px;
+height: 34px;
+flex-shrink: 0;
+border-radius: 300px;
+background: #FFF;
+margin: 6px;
+margin-right: 20px;
+}
+
+.serves-emojis {
+  position: relative;
+    top: -2px;
 }
 
 /* RECIPE BODY */
@@ -70,7 +86,7 @@ position: relative;
   font-family: Young Serif;
   font-size: 32px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
   border-radius: 0px 0px 50px 50px;
   /* background: rgba(0, 0, 0, 0.4); */
@@ -82,46 +98,159 @@ position: relative;
 
 
 .recipe-box {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 30px;
+  max-width: 1280px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  margin-left: auto;
+  margin-right: auto;
+  /* flex-direction: column; */
   padding: 10px;
   border-radius: 30px;
   align-items: center;
   background: #fff;
   box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.1);
-  margin: -30px;
+  margin-left: 40px;
+  margin-right:40px;
+  margin-top: -50px;
 }
 
+.time-for-recipes {
+color: #0D0D0D;
+font-family: Helvetica Neue;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+
 .recipe-box-top {
+  grid-column: span 10;
   display: flex;
+  margin-left: 15px;
   flex-direction: row;
-  width: 100%;
-  border-bottom: 2px dotted black;
+  width: 97%;
+  stroke-width: 2px;
+  border-bottom: 2px dashed rgba(13, 13, 13, 0.50);
 }
 
 .recipe-box-body {
-  display: flex;
+  grid-column: span 5;
+ display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
+  margin-left: 20px;
+  /* flex-wrap: nowrap;
+  width: 100%; */
+}
+
+.recipe-box-time{
+  color: #808080;
+text-align: center;
+font-family: Helvetica Neue;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-right: 20px;
+}
+
+.recipe-box-serving{
+  color: #808080;
+  text-align: center;
+font-family: Helvetica Neue;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin-right: 30px;
+}
+
+.recipe-box-ingredients{
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 20px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(10, 1fr);
+  gap:30px; */
 }
 
 .recipe-box-name {
+  color:  #febd2f;
+  font-family: Helvetica Neue;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
   margin-right: auto;
 }
 
 .recipe-box-body p {
-  width: 50%;
+  width: 100%;
 }
 
 /* ADD COMMENT */
 .add-comment {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
+
+.comment-field{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.name-user{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  /* border-radius: 20px; */
+  /* background: #fff;
+  box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  margin: 20px; 
+  flex-direction: column;
+}
+
+.review{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.button {
+  margin: 20px;
+}
+
+/* .comment-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 7px 24px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 20px;
+} */
 
 .comment-section {
   display: flex;
@@ -131,13 +260,13 @@ position: relative;
   padding: 20px;
 }
 
-.comment-container {
+/* .comment-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
   margin: 20px;
-}
+} */
 
 .comment-body {
   border-radius: 30px;

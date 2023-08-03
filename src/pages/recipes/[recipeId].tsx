@@ -32,6 +32,8 @@ const RecipePage = () => {
     return <p>Loading recipe, please wait...</p>;
   }
 
+  const servesIcons = ["", "👩‍🍳", "👩‍🍳👨‍🍳", "👩‍🍳👨‍🍳👩‍🍳", "👩‍🍳👨‍🍳👩‍🍳👨‍🍳"];
+
   return (
     <>
       <Menu background={true} />
@@ -54,22 +56,54 @@ const RecipePage = () => {
             <p>{getRecipe.name}</p>
           </div>
           <div className="recipe-box-serving">
-            <p>serves: {getRecipe.serves}</p>
+            <p>
+              Serves{" "}
+              <span className="serves-emojis">
+                {servesIcons[getRecipe.serves]}
+              </span>
+            </p>
           </div>
           <div className="recipe-box-time">
-            <p>prep time: {getRecipe.prep_time}</p>
+            <span>Prep Time </span>
+            <span className="time-for-recipe"> {getRecipe.prep_time} m</span>
           </div>
         </div>
+
         <div className="recipe-box-body">
-          <p>{getRecipe.instructions}</p>
+          <p>
+            <h3>Instructions</h3>
+            {getRecipe.instructions}
+          </p>
+        </div>
+        <div className="recipe-box-ingredients">
+          <h3>Ingredients</h3>
           <p>{getRecipe.ingredients}</p>
         </div>
       </div>
 
       <div className="add-comment">
         <h1>Add a comment</h1>
-        <p>Form to add comment HERE!</p>
       </div>
+
+      <span className="comment-field">
+        <div>
+          <label className="name-user">
+            <h3>Name</h3>
+            <input id="name-user" name="name-user" type="text" />
+          </label>
+        </div>
+        <div>
+          <label className="review">
+            <h3>Review</h3>
+            <textarea id="review" name="review" />
+          </label>
+        </div>
+        <div>
+          <span>
+            <button className="button">Save</button>
+          </span>
+        </div>
+      </span>
 
       <div className="comment-section">
         <h2>Comments</h2>
