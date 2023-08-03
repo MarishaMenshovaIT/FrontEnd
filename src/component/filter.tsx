@@ -45,6 +45,20 @@ function RecipeList() {
     console.log(id);
   }
 
+  const person = "👤";
+
+  const star = "⭐️";
+  const amountOfUserRating: number[] = getRecipe.flatMap(
+    (count) => count.comments.length
+  );
+  // const userRating: number = getRecipe.flatMap((rating) =>
+  //   rating.comments.map((userRating) => userRating.rating)
+  // );
+
+  // const averageRating: number =
+  //   (amountOfUserRating * userRating) / amountOfUserRating;
+  // console.log(averageRating);
+
   return (
     <div className="homepage-container">
       <h2 className="homepage-heading-recipes">Recipes</h2>
@@ -88,8 +102,16 @@ function RecipeList() {
               </div>
               <div className="recipe-box-right">
                 <h2>{recipe.name}</h2>
-                <p>{recipe.serves}</p>
-                <p>{recipe.prep_time}</p>
+                <div className="recipe-serve-prep">
+                  <div className="recipe-detail">
+                    <span>serves</span>
+                    <p>{person.repeat(recipe.serves)}</p>
+                  </div>
+                  <div className="recipe-detail">
+                    <span>prep time</span>
+                    <p>{recipe.prep_time}</p>
+                  </div>
+                </div>
               </div>
             </section>
           );

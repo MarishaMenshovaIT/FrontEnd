@@ -25,7 +25,11 @@ export default function Home() {
         </div>
       </div>
       <RecipeList />
-      <Button />
+      <section className="home-add-recipe">
+        <span className="add-new-recipe">Add</span>
+        <span className="add-new-recipe">New</span>
+        <span className="add-new-recipe">Recipes</span>
+      </section>
     </>
   );
 }
