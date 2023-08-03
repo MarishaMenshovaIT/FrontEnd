@@ -49,12 +49,3 @@ const Recipes = () => {
 };
 
 export default Recipes;
-
-// .filter((recipe) => {
-//   if (filterRecipes) {
-// return true;
-//   } else {
-// return recipe.all;
-//   }
-// }
-// )

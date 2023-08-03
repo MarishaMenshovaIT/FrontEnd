@@ -14,7 +14,7 @@ const Menu = (props: MenuProps) => {
           <span className="logo">🥗 HomeChefRecipes</span>
           <div className="menu">
             <Link href="/">Home</Link>
-            <button>
+            <button className="button">
               <Link href="/Button">Login</Link>
             </button>
           </div>
