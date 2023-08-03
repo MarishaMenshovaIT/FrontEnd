@@ -15,7 +15,7 @@ const Menu = (props: MenuProps) => {
           <div className="menu">
             <Link href="/">Home</Link>
             <button>
-              <Link href="/Button">Login</Link>
+              <Link href="/login">Login</Link>
             </button>
           </div>
         </div>

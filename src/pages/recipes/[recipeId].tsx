@@ -32,6 +32,26 @@ const RecipePage = () => {
     return <p>Loading recipe, please wait...</p>;
   }
 
+  const getRating = getRecipe.comments.map((amountOfRatings) =>
+    amountOfRatings.rating.valueOf()
+  );
+  console.log(getRating);
+
+  const totalRatings = getRating.length;
+  console.log(totalRatings);
+
+  const averageRating =
+    getRating.reduce((sum: number, rating: number) => sum + rating, 0) /
+    totalRatings;
+  console.log(averageRating);
+
+  const getStarRating = (averageRating: number) => {
+    const roundedRating = Math.round(averageRating * 2) / 2;
+    return "⭐️".repeat(roundedRating) + "✩".repeat(5 - roundedRating);
+  };
+
+  const servesIcons = ["", "👩‍🍳", "👩‍🍳👨‍🍳", "👩‍🍳👨‍🍳👩‍🍳", "👩‍🍳👨‍🍳👩‍🍳👨‍🍳"];
+
   return (
     <>
       <Menu background={true} />
@@ -44,23 +64,23 @@ const RecipePage = () => {
           {getRecipe.category.map((indexCat: Category) => (
             <p key={indexCat.id}>{indexCat.name}</p>
           ))}
-          <p>recipe rating here!</p>
+          <p>{getStarRating(averageRating)}</p>
         </div>
       </div>
 
       <div className="recipe-box">
         <div className="recipe-box-top">
-          <div className="recipe-box-name">
+          <span className="recipe-box-name">
             <p>{getRecipe.name}</p>
-          </div>
+          </span>
           <div className="recipe-box-serving">
-            <p>serves: {getRecipe.serves}</p>
-          </div>
-          <div className="recipe-box-time">
+            <p>serves: {servesIcons[getRecipe.serves]}</p>
             <p>prep time: {getRecipe.prep_time}</p>
           </div>
         </div>
         <div className="recipe-box-body">
+          <h2>Instructions:</h2>
+          <h2>Ingredients:</h2>
           <p>{getRecipe.instructions}</p>
           <p>{getRecipe.ingredients}</p>
         </div>
@@ -78,7 +98,7 @@ const RecipePage = () => {
             <div className="comment-body" key={comment.id}>
               <p>{comment.name}</p>
               <p>{comment.message}</p>
-              <p>{comment.rating}</p>
+              <p>{"⭐️".repeat(comment.rating)}</p>
             </div>
           ))}
         </div>

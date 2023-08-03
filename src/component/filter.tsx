@@ -47,17 +47,20 @@ function RecipeList() {
 
   const person = "👤";
 
-  const star = "⭐️";
-  const amountOfUserRating: number[] = getRecipe.flatMap(
-    (count) => count.comments.length
+  const getRating = getRecipe.flatMap((recipe) =>
+    recipe.comments.map((rating) => rating.rating.valueOf())
   );
-  // const userRating: number = getRecipe.flatMap((rating) =>
-  //   rating.comments.map((userRating) => userRating.rating)
-  // );
 
-  // const averageRating: number =
-  //   (amountOfUserRating * userRating) / amountOfUserRating;
-  // console.log(averageRating);
+  const totalRatings = getRating.length;
+
+  const sumOfRatings = getRating.reduce((sum, rating) => sum + rating, 0);
+  const averageRating = sumOfRatings / totalRatings;
+  console.log(averageRating);
+
+  const getStarRating = (averageRating: number) => {
+    const roundedRating = Math.ceil(averageRating * 2) / 2;
+    return "⭐️".repeat(roundedRating) + "✩".repeat(5 - roundedRating);
+  };
 
   return (
     <div className="homepage-container">
@@ -102,6 +105,7 @@ function RecipeList() {
               </div>
               <div className="recipe-box-right">
                 <h2>{recipe.name}</h2>
+                <span>{getStarRating(averageRating)}</span>
                 <div className="recipe-serve-prep">
                   <div className="recipe-detail">
                     <span>serves</span>
