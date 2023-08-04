@@ -45,12 +45,18 @@ const RecipePage = () => {
     totalRatings;
   console.log(averageRating);
 
-  const getStarRating = (averageRating: number) => {
+  const getStarRating = (averageRating: any) => {
     const roundedRating = Math.round(averageRating * 2) / 2;
     return "⭐️".repeat(roundedRating) + "✩".repeat(5 - roundedRating);
   };
 
   const servesIcons = ["", "👩‍🍳", "👩‍🍳👨‍🍳", "👩‍🍳👨‍🍳👩‍🍳", "👩‍🍳👨‍🍳👩‍🍳👨‍🍳"];
+
+  const formattedDates = getRecipe.comments.find((comment) => {
+    return new Date(comment.created_at).toLocaleString("en-GB");
+  });
+
+  console.log(formattedDates);
 
   return (
     <>
@@ -59,7 +65,8 @@ const RecipePage = () => {
         style={{ backgroundImage: `url(${getRecipe.img_url})` }}
         className="recipe-header"
       >
-        <div>
+        <div className="black-overlay" />
+        <div className="header-text">
           <h1>{getRecipe.name}</h1>
           {getRecipe.category.map((indexCat: Category) => (
             <p key={indexCat.id}>{indexCat.name}</p>
@@ -75,7 +82,7 @@ const RecipePage = () => {
           </span>
           <div className="recipe-box-serving">
             <p>serves: {servesIcons[getRecipe.serves]}</p>
-            <p>prep time: {getRecipe.prep_time}</p>
+            <p>prep time: {getRecipe.prep_time} min.</p>
           </div>
         </div>
         <div className="recipe-box-body">
@@ -88,7 +95,27 @@ const RecipePage = () => {
 
       <div className="add-comment">
         <h1>Add a comment</h1>
-        <p>Form to add comment HERE!</p>
+      </div>
+
+      <div className="comment-field">
+        <div className="comment-top">
+          <label className="name-user">
+            <h3>Name</h3>
+            <input id="name-user" name="name-user" type="text" />
+          </label>
+          <div>
+            <p>Rating: ✩✩✩✩✩</p>
+          </div>
+        </div>
+        <div className="comment-bottom">
+          <label className="review">
+            <h3>Review</h3>
+            <textarea id="review" name="review" />
+          </label>
+        </div>
+        <div>
+          <button className="button">Save</button>
+        </div>
       </div>
 
       <div className="comment-section">
@@ -97,8 +124,18 @@ const RecipePage = () => {
           {getRecipe.comments.map((comment: Comment) => (
             <div className="comment-body" key={comment.id}>
               <p>{comment.name}</p>
+              <p>
+                {new Date(comment.created_at).toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+              </p>
               <p>{comment.message}</p>
-              <p>{"⭐️".repeat(comment.rating)}</p>
+              <p>
+                {"⭐️".repeat(comment.rating) + "✩".repeat(5 - comment.rating)}
+              </p>
             </div>
           ))}
         </div>

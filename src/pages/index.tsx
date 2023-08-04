@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Menu from "../component/menu";
-import Button from "../component/butten";
 import RecipeList from "@/component/filter";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +25,13 @@ export default function Home() {
         </div>
       </div>
       <RecipeList />
-      <section className="home-add-recipe">
-        <span className="add-new-recipe">Add</span>
-        <span className="add-new-recipe">New</span>
-        <span className="add-new-recipe">Recipes</span>
-      </section>
+      <Link className={"link-style"} href="/add-recipe">
+        <section className="home-add-recipe">
+          <span className="add-new-recipe">Add</span>
+          <span className="add-new-recipe">New</span>
+          <span className="add-new-recipe">Recipes</span>
+        </section>
+      </Link>
     </>
   );
 }

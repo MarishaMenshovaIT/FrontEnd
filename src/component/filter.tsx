@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Recipe, Category } from "@/types/interfaces";
+import { stringify } from "querystring";
 
 function RecipeList() {
   const router = useRouter();
@@ -44,8 +45,6 @@ function RecipeList() {
     router.push(`recipes/${id}`);
     console.log(id);
   }
-
-  const person = "👤";
 
   const getRating = getRecipe.flatMap((recipe) =>
     recipe.comments.map((rating) => rating.rating.valueOf())
@@ -104,16 +103,33 @@ function RecipeList() {
                 <img className="recipe-box-img" src={recipe.img_url} />
               </div>
               <div className="recipe-box-right">
-                <h2>{recipe.name}</h2>
-                <span>{getStarRating(averageRating)}</span>
+                <div>
+                  <h2>{recipe.name}</h2>
+                  <span>
+                    {recipe.comments.length == 0
+                      ? 0
+                      : "⭐️".repeat(
+                          recipe.comments
+                            .map((c) => c.rating) // [4.5]
+                            .reduce((a, b) => a + b) / recipe.comments.length
+                        ) +
+                        "✩".repeat(
+                          5 -
+                            recipe.comments
+                              .map((c) => c.rating) // [4.5]
+                              .reduce((a, b) => a + b) /
+                              recipe.comments.length
+                        )}
+                  </span>
+                </div>
                 <div className="recipe-serve-prep">
                   <div className="recipe-detail">
                     <span>serves</span>
-                    <p>{person.repeat(recipe.serves)}</p>
+                    <p>{"👤".repeat(recipe.serves)}</p>
                   </div>
                   <div className="recipe-detail">
                     <span>prep time</span>
-                    <p>{recipe.prep_time}</p>
+                    <p>{recipe.prep_time} min.</p>
                   </div>
                 </div>
               </div>
@@ -126,3 +142,5 @@ function RecipeList() {
 }
 
 export default RecipeList;
+
+// {getStarRating(averageRating)}
