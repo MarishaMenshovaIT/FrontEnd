@@ -69,7 +69,7 @@ function RecipeList() {
         type="search"
         placeholder="Search for recipes"
       ></input>
-      <div className="recipe-button">
+      <div className="recipe-button-container">
         <button
           className={` recipe-button ${!activeCategory ? "active-button" : ""}`}
           onClick={() => setActiveCategory(null)}
