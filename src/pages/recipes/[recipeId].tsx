@@ -85,7 +85,9 @@ const RecipePage = () => {
             <p>prep time: {getRecipe.prep_time} min.</p>
           </div>
         </div>
+
         <div className="recipe-box-body">
+
           <h2>Instructions:</h2>
           <h2>Ingredients:</h2>
           <p>{getRecipe.instructions}</p>
@@ -117,6 +119,26 @@ const RecipePage = () => {
           <button className="button">Save</button>
         </div>
       </div>
+
+      <span className="comment-field">
+        <div>
+          <label className="name-user">
+            <h3>Name</h3>
+            <input id="name-user" name="name-user" type="text" />
+          </label>
+        </div>
+        <div>
+          <label className="review">
+            <h3>Review</h3>
+            <textarea id="review" name="review" />
+          </label>
+        </div>
+        <div>
+          <span>
+            <button className="button">Save</button>
+          </span>
+        </div>
+      </span>
 
       <div className="comment-section">
         <h2>Comments</h2>
