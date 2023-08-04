@@ -26,12 +26,13 @@ const Menu = (props: MenuProps) => {
         <div className="menu-bar">
           <span className="logo">🥗 HomeChefRecipes</span>
           <div className="menu">
-            <Link href="/">Home</Link>
+
+            <Link className={"link-style"} href="/">Home</Link>
             <button className="button">
               {token ? (
-                <button onClick={handleClick}>Logout</button>
+                <button className={"link-style"} onClick={handleClick}>Logout</button>
               ) : (
-                <Link href="/login">Login</Link>
+                <Link className={"link-style"} href="/login">Login</Link>
               )}
             </button>
           </div>

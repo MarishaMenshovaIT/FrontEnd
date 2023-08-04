@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Recipe, Category } from "@/types/interfaces";
+import { stringify } from "querystring";
 
 function RecipeList() {
   const router = useRouter();
@@ -45,19 +46,20 @@ function RecipeList() {
     console.log(id);
   }
 
-  const person = "👤";
-
-  const star = "⭐️";
-  const amountOfUserRating: number[] = getRecipe.flatMap(
-    (count) => count.comments.length
+  const getRating = getRecipe.flatMap((recipe) =>
+    recipe.comments.map((rating) => rating.rating.valueOf())
   );
-  // const userRating: number = getRecipe.flatMap((rating) =>
-  //   rating.comments.map((userRating) => userRating.rating)
-  // );
 
-  // const averageRating: number =
-  //   (amountOfUserRating * userRating) / amountOfUserRating;
-  // console.log(averageRating);
+  const totalRatings = getRating.length;
+
+  const sumOfRatings = getRating.reduce((sum, rating) => sum + rating, 0);
+  const averageRating = sumOfRatings / totalRatings;
+  console.log(averageRating);
+
+  const getStarRating = (averageRating: number) => {
+    const roundedRating = Math.ceil(averageRating * 2) / 2;
+    return "⭐️".repeat(roundedRating) + "✩".repeat(5 - roundedRating);
+  };
 
   return (
     <div className="homepage-container">
@@ -67,7 +69,7 @@ function RecipeList() {
         type="search"
         placeholder="Search for recipes"
       ></input>
-      <div className="recipe-button">
+      <div className="recipe-button-container">
         <button
           className={` recipe-button ${!activeCategory ? "active-button" : ""}`}
           onClick={() => setActiveCategory(null)}
@@ -101,15 +103,33 @@ function RecipeList() {
                 <img className="recipe-box-img" src={recipe.img_url} />
               </div>
               <div className="recipe-box-right">
-                <h2>{recipe.name}</h2>
+                <div>
+                  <h2>{recipe.name}</h2>
+                  <span>
+                    {recipe.comments.length == 0
+                      ? 0
+                      : "⭐️".repeat(
+                          recipe.comments
+                            .map((c) => c.rating) // [4.5]
+                            .reduce((a, b) => a + b) / recipe.comments.length
+                        ) +
+                        "✩".repeat(
+                          5 -
+                            recipe.comments
+                              .map((c) => c.rating) // [4.5]
+                              .reduce((a, b) => a + b) /
+                              recipe.comments.length
+                        )}
+                  </span>
+                </div>
                 <div className="recipe-serve-prep">
                   <div className="recipe-detail">
                     <span>serves</span>
-                    <p>{person.repeat(recipe.serves)}</p>
+                    <p>{"👤".repeat(recipe.serves)}</p>
                   </div>
                   <div className="recipe-detail">
                     <span>prep time</span>
-                    <p>{recipe.prep_time}</p>
+                    <p>{recipe.prep_time} min.</p>
                   </div>
                 </div>
               </div>
@@ -122,3 +142,5 @@ function RecipeList() {
 }
 
 export default RecipeList;
+
+// {getStarRating(averageRating)}
