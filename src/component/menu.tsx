@@ -1,11 +1,24 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface MenuProps {
   background?: boolean;
 }
 
 const Menu = (props: MenuProps) => {
+  const [token, setToken] = useState<null | string>(null);
   const { background } = props;
+  useEffect(() => {
+    const tokenFromLS = localStorage.getItem("token");
+    if (tokenFromLS) {
+      setToken(tokenFromLS);
+    }
+  }, []);
+
+  const handleClick = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+  };
 
   return (
     <>
@@ -15,7 +28,11 @@ const Menu = (props: MenuProps) => {
           <div className="menu">
             <Link href="/">Home</Link>
             <button className="button">
-              <Link href="/Button">Login</Link>
+              {token ? (
+                <button onClick={handleClick}>Logout</button>
+              ) : (
+                <Link href="/login">Login</Link>
+              )}
             </button>
           </div>
         </div>
